@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para la mejor mamá del mundo 🌸</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      background: linear-gradient(180deg, #ffd4ea 0%, #f2d6ff 40%, #ffe3eb 100%);
+      color: #5d3559;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.6), transparent 40%),
+        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.4), transparent 30%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .flowers {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .flower {
+      position: absolute;
+      top: -60px;
+      animation: floatDown linear infinite;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+    }
+
+    @keyframes floatDown {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 760px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4.8rem;
+      color: #cf4b90;
+      text-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #7a4875;
+      margin-bottom: 40px;
+      max-width: 320px;
+    }
+
+    .glow {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.35);
+      filter: blur(90px);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    .envelope {
+      position: relative;
+      width: 310px;
+      height: 210px;
+      background: linear-gradient(135deg, #ff9ccc, #ffb7d8);
+      border-radius: 18px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 20px 45px rgba(186, 75, 131, 0.28);
+      overflow: hidden;
+    }
+
+    .envelope:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(186, 75, 131, 0.35);
+    }
+
+    .envelope::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 155px solid transparent;
+      border-right: 155px solid transparent;
+      border-top: 110px solid #ffc3e1;
+      transform-origin: top;
+      transition: transform 1s ease;
+      z-index: 5;
+    }
+
+    .envelope.open::before {
+      transform: rotateX(180deg);
+    }
+
+    .envelope::after {
+      content: '🌸';
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      font-size: 2rem;
+      opacity: 0.7;
+    }
+
+    .letter-inside {
+      position: absolute;
+      inset: 5%;
+      background: linear-gradient(180deg, #fff, #fff6fb);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #d14d8f;
+      font-weight: 600;
+      z-index: 2;
+      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.04);
+    }
+
+    .tap-text {
+      margin-top: 28px;
+      color: #9b5a8b;
+      font-size: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    .letter-section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1.2s ease;
+      display: none;
+      padding-bottom: 80px;
+    }
+
+    .letter-section.show {
+      opacity: 1;
+      transform: translateY(0);
+      display: block;
+    }
+
+    .music-box {
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 28px;
+      padding: 22px;
+      margin-bottom: 25px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .music-btn {
+      border: none;
+      background: linear-gradient(135deg, #d14d8f, #ff75b5);
+      color: white;
+      padding: 14px 24px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 18px rgba(209, 77, 143, 0.3);
+    }
+
+    .music-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 35px;
+      padding: 30px;
+      line-height: 2;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 220px;
+      height: 220px;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      filter: blur(20px);
+    }
+
+    .card p {
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .gallery {
+      display: grid;
+      gap: 22px;
+      margin: 35px 0;
+    }
+
+    .photo {
+      overflow: visible;
+      background: white;
+      padding: 12px;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      transition: all 0.35s ease;e 
+      position: relative;
+    }
+
+    .photo:hover {
+      transform: translateY(-6px) rotate(1deg);
+    }
+
+    .photo img {
+      width: 100%;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .photo::before {
+      content: '🌸';
+      position: absolute;
+      top: -18px;
+      left: -10px;
+      font-size: 2rem;
+      z-index: 4;
+      transform: rotate(-10deg);
+    }
+
+    .photo::after {
+      content: '💕';
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      font-size: 1.2rem;
+    }
+
+    .final {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .final h2 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.4rem;
+      color: #cf4b90;
+      margin-bottom: 12px;
+    }
+
+    .signature {
+      margin-top: 22px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #7b4471;
+    }
+
+    .heart {
+      font-size: 2.4rem;
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.15);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      .envelope {
+        width: 280px;
+        height: 190px;
+      }
+
+      .envelope::before {
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-top: 100px solid #ffc3e1;
+      }
+
+      .card {
+        padding: 24px;
+        border-radius: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="flowers" id="flowers"></div>
+
+  <div class="container">
+
+    <section class="hero">
+      <div class="glow"></div>
+      <h1>Para la mejor mamá del mundo 🌸</h1>
+      <p class="subtitle">Una pequeña carta hecha con muchísimo amor 💕</p>
+
+      <div class="envelope" id="envelope">
+        <div class="letter-inside">
+          <div style="text-align:center; position:relative;">
+            <div style="font-size:3rem; margin-bottom:10px;">🌸</div>
+            <div>💌 Abrir carta</div>
+            <div style="margin-top:10px; font-size:1rem; opacity:0.7;"> mami✨</div>
+
+            <img src="https://png.pngtree.com/png-clipart/20230418/original/pngtree-watercolor-flower-decoration-png-image_9068266.png" style="position:absolute; width:80px; top:-35px; left:-60px; opacity:0.8;">
+
+            <img src="https://png.pngtree.com/png-clipart/20230418/original/pngtree-pink-flower-watercolor-decoration-png-image_9068242.png" style="position:absolute; width:80px; bottom:-35px; right:-60px; opacity:0.8;">
+          </div>
+        </div>
+      </div>
+
+      <p class="tap-text">Toca el sobre para abrir tu carta ✨</p>
+    </section>
+
+    <section class="letter-section" id="letter">
+
+      <div class="music-box">
+        <p style="margin-bottom:12px;">🎵 Carlos Rivera - Eres Tú (Mamá)</p>
+        <button class="music-btn" id="musicBtn">▶ Reproducir música</button>
+
+        <audio id="audio" loop>
+            <source src="Carlos Rivera - Eres Tú (Mamá).mp3" type="audio/mpeg">
+            </audio>
+      </div>
+
+      <div class="card">
+        <img src="https://png.pngtree.com/png-clipart/20230418/original/pngtree-pink-watercolor-flower-corner-decoration-png-image_9068257.png" style="position:absolute; top:0; left:0; width:180px; opacity:0.7; pointer-events:none;">
+
+        <img src="https://png.pngtree.com/png-clipart/20230418/original/pngtree-floral-watercolor-corner-decoration-png-image_9068261.png" style="position:absolute; bottom:0; right:0; width:180px; opacity:0.7; pointer-events:none;">
+        <p><strong>Feliz cumpleaños, maa!! 💕✨️</strong></p>
+
+        <p>
+          Hoy quería recordarte algo que quizá no te dicen lo suficiente: eres el corazón de esta familia 🫀 Aunque a veces todos te hagamos renegar y te saquemos canas verdes, siempre terminas estando para cada uno de nosotros, resolviendo todo, cuidando de todos y sosteniendo a la familia incluso cuando nadie más puede. Y sinceramente, no sé qué sería de nosotros sin ti 🫂
+        </p>
+
+        <div class="gallery">
+          <div class="photo">
+            <img src="https://i.ibb.co/9kQzRtGt/1000254414.jpg" alt="mamá">
+          </div>
+        </div>
+
+        <p>
+          Sé que muchas veces te tocó dejar de lado tus propias etapas y tus cosas por cuidar a tus hermanos, a tus hijos y hasta a mí. Y aunque no me hayas dado la vida, fuiste tú quien me dio un hogar, cariño y la figura de mamá más presente que tuve. Nunca voy a olvidar eso. Gracias por quererme como una hija más y por hacerme sentir siempre parte de esta familia. Tus hijos son mis hermanos y tú eres mi mamá en todas las formas que realmente importan 🫶🏻
+        </p>
+
+        <div class="gallery">
+          <div class="photo">
+            <img src="https://i.ibb.co/6qk3rPb/1000063365.jpg" alt="recuerdo">
+          </div>
+
+          <div class="photo">
+            <img src="https://i.ibb.co/5gzWfTxH/1000065926.jpg" alt="familia">
+          </div>
+        </div>
+
+        <p>
+          Y sí, también sobrevivimos a tu mano dura, tus retos y uno que otro correazo 😂 pero ahora entiendo que siempre quisiste lo mejor para nosotros. Me da felicidad verte diferente ahora, más tranquila, más tú, y siendo la misma mujer fuerte que puede con todo.
+        </p>
+
+        <div class="gallery">
+          <div class="photo">
+            <img src="https://i.ibb.co/rKX73yHp/1000065432.jpg" alt="familia boda">
+          </div>
+
+          <div class="photo">
+            <img src="https://i.ibb.co/8DsrstnP/1000082513.jpg" alt="mamá y bebé">
+          </div>
+        </div>
+
+        <p>
+          Gracias por cada consejo, cada reto, cada abrazo y cada vez que estuviste para mí sin importar qué. Eres una mujer increíble y admiro mucho todo lo que haces 💪🏻
+        </p>
+
+        <p>
+          Te amo muchísimo, ma. Espero que hoy te consientan como tú siempre nos consientes a nosotros y que este año te traiga mucha paz, salud y felicidad. 🤍
+        </p>
+
+        <div class="final">
+          <h2>Gracias por todo</h2>
+          <div class="heart">💕</div>
+          <p class="signature">Tu hija del corazón 🫂</p>
+        </div>
+
+      </div>
+
+    </section>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const letter = document.getElementById('letter');
+    envelope.addEventListener('click', () => {
+      envelope.classList.add('open');
+      setTimeout(() => {
+        letter.classList.add('show');
+        letter.scrollIntoView({
+          behavior: 'smooth'
+        });
+      }, 700);
+    });
+    const flowers = document.getElementById('flowers');
+    const emojis = ['🌸', '💮', '🌷', '💕', '✨'];
+    for (let i = 0; i < 35; i++) {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.animationDuration = (5 + Math.random() * 10) + 's';
+      flower.style.fontSize = (18 + Math.random() * 18) + 'px';
+      flower.style.opacity = Math.random();
+      flowers.appendChild(flower);
+    }
+    const audio = document.getElementById('audio');
+    const musicBtn = document.getElementById('musicBtn');
+    let playing = false;
+    musicBtn.addEventListener('click', () => {
+      if (!playing) {
+        audio.play();
+        musicBtn.innerHTML = '⏸ Pausar música';
+        playing = true;
+      } else {
+        audio.pause();
+        musicBtn.innerHTML = '▶ Reproducir música';
+        playing = false;
+      }
+    });
+  </script>
+
+</body>
+
+</html>
